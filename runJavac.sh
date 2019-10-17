@@ -10,9 +10,9 @@
 #     <revision date>
 #
 # (3) Ways to run runJavac.sh:
-#   $ ./run Driver.java
-#   $ ./run Driver.
-#   $ ./run Driver
+#   $ ./runJavac Driver.java
+#   $ ./runJavac Driver.
+#   $ ./runJavac Driver
 
 # Vars
 prgmName=$1
@@ -32,9 +32,9 @@ if [[ $prgmName != *$dot ]]; then
   prgmName+=${dot}
 fi
 
-### Compile Java program
+# Compile Java program
 javac "${prgmName}java"
 
-### Run Java program
+# Run Java program
 java ${prgmName%"."}
 
