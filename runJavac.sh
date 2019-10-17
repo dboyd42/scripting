@@ -29,7 +29,6 @@ fi
 
 # Cat '.' to $prgmName
 if [[ $prgmName != *$dot ]]; then
-  echo "here's the dot"
   prgmName+=${dot}
 fi
 
