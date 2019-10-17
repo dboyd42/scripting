@@ -1,9 +1,18 @@
 #!/bin/bash
 #
-# This script automates the java compile and run process into one command.
-# The <javaFile> can be ran with and without the '.' and '.java' extensions
+# Copyright 2019 David Boyd, all rights reserved
+# Program: runJavac.sh
+# Description:
+#   This script automates the java compile and run process into one command.
+#   The java-file can be ran with and without the '.' or '.java' extensions
+# Date: Thu Oct 17 16:47:08 CDT 2019
+# Revised:
+#     <revision date>
 #
-# How to run script: $ ./run javafile
+# (3) Ways to run runJavac.sh:
+#   $ ./run Driver.java
+#   $ ./run Driver.
+#   $ ./run Driver
 
 # Vars
 prgmName=$1
