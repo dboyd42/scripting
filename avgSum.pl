@@ -17,14 +17,15 @@ $sum = 0;
 if (@ARGV) {
     @numbers = @ARGV;
 } else {
-    print "Input numbers: ";
-    chomp ($nums);
-    @numbers = split (/\d+/, $nums);
+    print "Input numbers 10 numbers\n";
+    #chomp ($nums);
+    #@numbers = split (/\d+/, $nums);
     #Requires <CR> between numbers
-    #for ($i=0; $i<$size; ++$i) {
-        #chomp ($num = <STDIN>);
-        #push @numbers, $num;
-        #}
+    for ($i=1; $i<$size+1; ++$i) {
+        print "Input #${i}: ";
+        chomp ($num = <STDIN>);
+        push @numbers, $num;
+    }
 
 }
 $numbers_length = @numbers;
