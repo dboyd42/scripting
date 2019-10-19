@@ -5,6 +5,7 @@
 # Description:
 #   This script automates the java compile and run process into one command.
 #   The java-file can be ran with and without the '.' or '.java' extensions
+# Note: This program does not substitute the use of make.
 # Date: Thu Oct 17 16:47:08 CDT 2019
 # Revised:
 #     <revision date>
