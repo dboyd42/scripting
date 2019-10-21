@@ -24,8 +24,8 @@ display_prgmName() {
     echo -e "\n"
 }
 display_results() {
-    echo "Sum: $sum";
-    echo "Avg: $avg";
+    echo "Sum: $sum"
+    echo "Avg: $avg"
 }
 main() {
     display_prgmName
@@ -46,7 +46,7 @@ pretty_print() {
 }
 setArray() {
         echo -e "Input $size_restriction Numbers"
-        for ((i=1;i<$size_restriction+1;++i));
+        for ((i=1;i<$size_restriction+1;++i))
         do
             read -p "Input #$i: " numbers[$i]
         done
