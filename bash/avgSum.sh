@@ -9,58 +9,53 @@
 #     Sat Oct 12 18:26:06 CDT 2019
 
 ### Variables                                                               ###
-SIZE_RESTRICTION=10             # Arrays restriction size
-DECIMALS=2                      # n Decimal places for formatting results
+size_restriction=10             # Arrays restriction size
+decimals=2                      # n Decimal places for formatting results
 
 ### Functions                                                               ###
+avgArray() {
+    avg=$(bc <<< "scale=$decimals;$sum/$numbers_length")
+}
 display_prgmName() {
-    echo -e "\n\n"
+    echo -e "\n"
     echo -e "\t\t++============================++"
     echo -e "\t\t|| Sum And Average Calculator ||"
     echo -e "\t\t++============================++"
-    echo -e "\n\n"
+    echo -e "\n"
 }
-setArray() {
-        echo -e "Enter $SIZE_RESTRICTION Numbers"
-        for ((i=1;i<$SIZE_RESTRICTION+1;++i));
-        do
-            read -p "Number $i: " NUMNUMS[$i]
-        done
-}
-sumArray() {
-    SUM=0.0
-    SIZE=${#NUMNUMS[@]}
-    SUM=$( IFS="+"; bc <<< "${NUMNUMS[*]}" )
-}
-avgArray() {
-    AVG=$(bc <<< "scale=$DECIMALS;$SUM/$SIZE")
-}
-getAvg() {
-    echo $AVG
-}
-getSize() {
-    echo $SIZE
-}
-getSum() {
-    echo $SUM
-}
-display_data() {
-    echo -e 'Array values | ' ${NUMNUMS[*]}
-    echo -e 'Array size   | ' $SIZE
-    echo -e 'SUM          | ' $SUM
-    echo -e 'AVG          | ' $AVG
+display_results() {
+    echo "Sum: $sum";
+    echo "Avg: $avg";
 }
 main() {
     display_prgmName
     setArray
     sumArray
     avgArray
-    echo ""
-    display_data
-    echo ""
-    getSum
-    getAvg
+    echo
+    display_results
+    echo -e "\nTotals"
+    echo -e "======"
+    pretty_print
 }
-### RUN MAIN PROGRAM                                                        ###
+pretty_print() {
+    echo -e 'Array values | ' ${numbers[*]}
+    echo -e 'Array size   | ' $numbers_length
+    echo -e 'Sum          | ' $sum
+    echo -e 'Avg          | ' $avg
+}
+setArray() {
+        echo -e "Input $size_restriction Numbers"
+        for ((i=1;i<$size_restriction+1;++i));
+        do
+            read -p "Input #$i: " numbers[$i]
+        done
+}
+sumArray() {
+    sum=0.0
+    numbers_length=${#numbers[@]}
+    sum=$( IFS="+"; bc <<< "${numbers[*]}" )
+}
+### Run main program                                                        ###
 main
 
