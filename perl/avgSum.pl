@@ -2,7 +2,7 @@
 # Copyright 2019 David Boyd, all rights reserved
 # Program: avg Sum Calculator
 # Description:
-#     This program calculcates the sum and avg of n numbers.
+#     This program calculates the sum and avg of n numbers.
 # Date: Fri Oct 18 19:58:19 CDT 2019
 # Revised:
 #     Mon Oct 21 16:26:36 CDT 2019
