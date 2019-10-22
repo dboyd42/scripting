@@ -16,6 +16,15 @@ decimals=2                      # n Decimal places for formatting results
 avgArray() {
     avg=$(bc <<< "scale=$decimals;$sum/$numbers_length")
 }
+checkArgs() {
+    if [[ $@ -gt 0 ]]; then
+        echo ARGS is greater than 0
+        numbers=("$@")
+    else
+        echo There are NO ARGS
+        setArray
+    fi
+}
 display_prgmName() {
     echo -e "\n"
     echo -e "\t\t++============================++"
@@ -29,7 +38,8 @@ display_results() {
 }
 main() {
     display_prgmName
-    setArray
+    #setArray
+    checkArgs "$@"
     sumArray
     avgArray
     echo
@@ -57,5 +67,5 @@ sumArray() {
     sum=$( IFS="+"; bc <<< "${numbers[*]}" )
 }
 ### Run main program                                                        ###
-main
+main "$@"
 
