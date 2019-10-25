@@ -5,6 +5,7 @@
 #     Calculates the sum and average of 10 numbers.
 # Date: Fri Oct 11 09:00:00 CDT 2019
 # Revised:
+#     Fri Oct 25 18:23:11 CDT 2019
 #     Mon Oct 21 15:36:20 CDT 2019
 #     Sat Oct 12 18:26:06 CDT 2019
 
@@ -29,7 +30,7 @@ display_results() {
 }
 main() {
     display_prgmName
-    setArray
+    setArray "$@"
     sumArray
     avgArray
     echo
@@ -45,11 +46,16 @@ pretty_print() {
     echo -e 'Avg          | ' $avg
 }
 setArray() {
+    if [ -z $1 ]; then
         echo -e "Input $size_restriction Numbers"
         for ((i=1;i<$size_restriction+1;++i))
         do
             read -p "Input #$i: " numbers[$i]
         done
+    else
+        numbers=("$@")
+        size_restriction=${#numbers[@]}   # resize array for average
+    fi
 }
 sumArray() {
     sum=0.0
@@ -57,5 +63,5 @@ sumArray() {
     sum=$( IFS="+"; bc <<< "${numbers[*]}" )
 }
 ### Run main program                                                        ###
-main
+main "$@"
 
