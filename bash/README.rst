@@ -57,3 +57,7 @@ shell word.
 "${array[*]}" leads to a *single* shell-word with *all* of the elements of the
 array separated by spaces **(or whatever the first chracter of IFS is)**
 
+scale
+-----
+**scale** determines how many decimal places.
+
