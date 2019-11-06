@@ -11,67 +11,85 @@
 ###
 ### Declare vars
 ###
-mphr=60       # Minutes per hour.
-hpd=24        # Hours per day.
-
-times=() # str [timeIn, lunchOut, lunchIn, timeOut]
-hours=() # int [timeIn, lunchOut, lunchIn, timeOut]
-mins=()  # int [timeIn, lunchOut, lunchIn, timeOut]
-minsDaytime=""  # str "mins+daytime"
-daytime=""      # str "am" -or "pm"
-complement=0
-totalMins=0
-totalHours=0
-paidMins=0
-paidHours=0
+mphr=60           # Minutes per hour.
+hpd=24            # Hours per day.
+punchStrTimes=()  # str [timeIn, lunchOut, lunchIn, timeOut]
+punchedHours=()   # int [timeIn, lunchOut, lunchIn, timeOut]
+punchedMins=()    # int [timeIn, lunchOut, lunchIn, timeOut]
+sumHours=()       # int [beforeLuch, aferLunch]
+sumMins=()        # int [beforeLuch, aferLunch]
+workedHours=0     # total hours worked
+workedMins=0      # total mins worked
+minsDaytime=""    # str "mins+daytime" (am or pm)
+daytime=""        # str "am" -or "pm"
+complement=0      # int paid clocked-in-time
 
 ###
 ### Get user input
 ###
-times=(6:30am 11:25am 11:40am 5:30pm)  # hardcoded to be deleted later
-#read -p "Time-In  : " times[0]        # THIS WORKS!
-#read -p "Lunch-Out: " times[1]
-#read -p "Lunch-In : " times[2]
-#read -p "Time-Out : " times[3]
+punchStrTimes=(6:30am 11:25am 11:40am 5:30pm)  # hardcoded to be deleted later
+#read -p "Time-In  : " punchStrTimes[0]        # THIS WORKS!
+#read -p "Lunch-Out: " punchStrTimes[1]
+#read -p "Lunch-In : " punchStrTimes[2]
+#read -p "Time-Out : " punchStrTimes[3]
 
 ###
-### Calculate H:M worked
-###
-
 ### Parse Hours, Mins, Daytime
-for (( i=0; i<${#times[@]}; i++))
+###
+for (( i=0; i<${#punchStrTimes[@]}; i++))
 do
-    hours+=(${times[$i]%%:*})
-    minsDaytime=(${times[$i]##*:})
+    punchedHours+=(${punchStrTimes[$i]%%:*})
+    minsDaytime=(${punchStrTimes[$i]##*:})
 
     # Parse Mins from am/pm
     if [[ $minsDaytime = *"a"* ]]; then
-        mins+=(${minsDaytime%%a*})
+        punchedMins+=(${minsDaytime%%a*})
     elif [[ $minsDaytime = *"p"* ]]; then
-        mins+=(${minsDaytime%%p*})
-        hours[$i]=$((hours[$i] + 12))  # Convert to military time
+        punchedMins+=(${minsDaytime%%p*})
+        punchedHours[$i]=$((punchedHours[$i] + 12))  # Convert to military time
     else
-        mins+=$((minsDaytime))
+        punchedMins+=$((minsDaytime))
     fi
 done
 
 ###
-### Calulate mins worked
-###
-let complement=mphr-mins[0]        # 60's complement
-let totalMins=complement+mins[1]
-let paidMins+=totalMins%mphr
-
-if [ $((totalMins-mphr)) -gt 0 ]; then
-    let paidHours+=totalMins-60
-fi
-
-###
 ### Calulate hours worked
 ###
+let sumHours+=(punchedHours[1]-punchedHours[0])
+#let sumHours+=(punchedHours[3]-punchedHours[2])
 
-let totalHours=(hours[1]-hours[0])
-let totalHours+=(hours[3]-hours[2])
+###############################################################################
+echo ""
+echo "DEBUG :: sumHours: " ${sumHours[*]}
+###############################################################################
+
+###
+### Calulate mins worked
+###
+
+# time-in's (Minute's) complement
+let complement=mphr-punchedMins[0]
+# Add compliment to time-out
+let tempTotMins=complement+punchedMins[1]
+#let sumMins+=tempTotMins%mphr
+
+#if [ $((tempTotMins-mphr)) -gt 0 ]; then
+#    let workedHours+=tempTotMins-60
+#fi
+###############################################################################
+echo ""
+echo "DEBUG :: sumMins: " ${tempTotMins[*]}
+###############################################################################
+
+###
+### Convert ints to mins
+###
+
+#if [[ totalMin -lt mphr ]]
+#then
+#    sum
+#
+
 
 
 
@@ -79,13 +97,14 @@ let totalHours+=(hours[3]-hours[2])
 ### Display user input
 ###
 echo ""
-echo "Times: " ${times[*]}
-echo "hours: " ${hours[*]}
-echo "mins : " ${mins[*]}
+echo "punchStrTimes: " ${punchStrTimes[*]}
 echo ""
-echo "complement: " $complement
-echo "totalMins : " $totalMins
-echo "paidMins  : " $paidMins
-echo "paidHours : " $paidHours
+echo "punchedHours : " ${punchedHours[*]}
+echo "punchedMins  : " ${punchedMins[*]}
+echo ""
+echo "complement   : " $complement
+echo "tempTotMins  : " $tempTotMins
+echo "workedMins   : " $workedMins
+echo "workedHours  : " $workedHours
 echo ""
 
