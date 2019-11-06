@@ -23,7 +23,7 @@ workedHours=0     # total hours worked
 workedMins=0      # total mins worked
 minsDaytime=""    # str "mins+daytime" (am or pm)
 complement=0      # int paid clocked-in-time
-#punchStrTimes=(6:30am 11:25am 11:40am 5:30pm)  # Tester vars1
+punchStrTimes=(6:30am 11:25am 11:40am 5:50pm)  # Tester vars1
 #punchStrTimes=(6:10am 11:50am 11:40am 5:30pm)  # Tester vars2
 
 ###
@@ -57,12 +57,10 @@ instructions() {
 ### Get user input
 ###
 getPunchTimes() {
-    j=0
-    for i in ${menu[*]}
-    do
-        read -p "$i: " punchStrTimes[$j]
-        let j++
-    done
+    for ((i=0; i<${#menu[@]}; i++)) {
+        printf "%-9s: " ${menu[$i]}
+        read punchStrTimes[$i]
+    }
 }
 
 ###
@@ -111,7 +109,7 @@ calcMins() {
         let sumMins[$i/2]=complement+punchedMins[$i+1]
 
         # Convert ints to mins
-        if [[ $sumMins -lt $mphr ]]
+        if [ ${sumMins[$i/2]} -lt $mphr ]
         then
             let sumHours[$i/2]--
         else
@@ -121,7 +119,7 @@ calcMins() {
 }
 
 ###
-### Sum calculated hours and mins
+### Sum pre & post lunch HH:MM
 ###
 sumTimes() {
 
@@ -143,8 +141,8 @@ sumTimes() {
 ### Display results
 ###
 displayResults() {
-    clear
-    prgm_title
+    #clear
+    #prgm_title
     echo ""
     for ((i=0; i<${#punchStrTimes[@]}; i++)) {
         printf "%-9s: %7s\n" ${menu[$i]} ${punchStrTimes[$i]}
@@ -153,21 +151,44 @@ displayResults() {
     printf "Total    : %s:%s\n\n" $workedHours $workedMins
 }
 
+debug() {
+    echo ""
+    echo "punchStrTimes: " ${punchStrTimes[*]}
+    echo ""
+    echo "punchedHours : " ${punchedHours[*]}
+    echo "punchedMins  : " ${punchedMins[*]}
+    echo ""
+    echo "sumHours     : " ${sumHours[*]}
+    echo "sumMins      : " ${sumMins[*]}
+    echo "workedHours  : " $workedHours
+    echo "workedMins   : " $workedMins
+    echo "Total Time   : " $workedHours":"$workedMins
+    echo ""
+}
 ###
 ### Main
 ###
 main() {
-    instructions
-    getPunchTimes
+#    instructions
+#    getPunchTimes
+    echo "                                                  1ST "
+    debug
     parsePunchStrTimes
     calcHours
+    echo "                                         2nd post-calcHours()"
+    debug
     calcMins
+    echo "                                         3rd post-calcMins()"
+    debug
     sumTimes
+    echo "                                         4th post-sumTimes()"
+    debug
     displayResults
+    echo "                                                   LAST "
+    debug
 }
 
 ###
 ### Run Program
 ###
 main
-
