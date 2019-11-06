@@ -80,7 +80,7 @@ calcMins() {
         # punch-In's minutes complement
         let complement=mphr-punchedMins[$i]
         # Add compliment to punch-Out's minutes
-        let sumMins[$i/2]=complement+punchedMins[1]
+        let sumMins[$i/2]=complement+punchedMins[$i+1]
 
         # Convert ints to mins
         if [[ $sumMins -lt $mphr ]]
