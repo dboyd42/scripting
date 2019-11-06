@@ -63,11 +63,10 @@ parsePunchStrTimes() {
 ### Calulate hours worked
 ###
 calcHours() {
-    for ((i=0; i<=${#punchStrTimes[@]}; i+=2)) {
+    for ((i=0; i<${#punchStrTimes[@]}; i+=2)) {
         let sumHours[$i/2]=(punchedHours[$i+1]-punchedHours[$i])
         #let sumHours+=(punchedHours[3]-punchedHours[2])
         #######################################################################
-        echo ""
         echo "DEBUG :: sumHours   : " ${sumHours[*]}
         #######################################################################
     }
@@ -77,28 +76,25 @@ calcHours() {
 ### Calulate mins worked
 ###
 calcMins() {
-    # punch-In's minutes complement
-    let complement=mphr-punchedMins[0]
-    # Add compliment to punch-Out's minutes
-    let sumMins+=complement+punchedMins[1]
-    #######################################################################
-    echo "DEBUG :: sumMins    : " ${sumMins[*]}
-    #######################################################################
+    for ((i=0; i<${#punchStrTimes[@]}; i+=2)) {
+        # punch-In's minutes complement
+        let complement=mphr-punchedMins[$i]
+        # Add compliment to punch-Out's minutes
+        let sumMins[$i/2]=complement+punchedMins[1]
 
-    ###
-    ### Convert ints to mins
-    ###
-
-    if [[ $sumMins -lt $mphr ]]
-    then
-        let sumHours[0]--
-    else
-        let sumMins[0]=sumMins[0]%mphr
-    fi
-    ###########################################################################
-    echo "DEBUG :: sumHours   : " ${sumHours[*]}
-    echo "DEBUG :: sumMins    : " ${sumMins[*]}
-    ###########################################################################
+        # Convert ints to mins
+        if [[ $sumMins -lt $mphr ]]
+        then
+            let sumHours[$i/2]--
+        else
+            let sumMins[$i/2]=sumMins[$i/2]%mphr
+        fi
+        #######################################################################
+        echo "complement   : " $complement
+        echo "DEBUG :: sumHours   : " ${sumHours[*]}
+        echo "DEBUG :: sumMins    : " ${sumMins[*]}
+        #######################################################################
+    }
 }
 
 ###
@@ -111,8 +107,6 @@ display() {
     echo "punchedHours : " ${punchedHours[*]}
     echo "punchedMins  : " ${punchedMins[*]}
     echo ""
-    echo "complement   : " $complement
-    echo ""
     echo "sumHours     : " ${sumHours[*]}
     echo "sumMins      : " ${sumMins[*]}
     echo "workedMins   : " $workedMins
@@ -122,6 +116,11 @@ display() {
 ###############****************************************************************
 # Test Functions
 parsePunchStrTimes
+echo ""
+echo "punchStrTimes: " ${punchStrTimes[*]}
+echo "punchedHours : " ${punchedHours[*]}
+echo "punchedMins  : " ${punchedMins[*]}
+echo ""
 calcHours
 calcMins
 display
