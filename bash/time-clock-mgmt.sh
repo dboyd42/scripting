@@ -2,8 +2,8 @@
 # Copyright 2019 David Boyd, all rights reserved
 # Program: Timeclock Management
 # Description:
-#     This program manages time in and out routines for a small day care.
-#     Outputs the total hours worked that day.
+#     This program manages time-in and time-outroutines for an employee.
+#     The program outputs the total hours worked for that day.
 # Date: 2019-11-05
 # Revised:
 #     2019-11-06
@@ -23,6 +23,8 @@ workedHours=0     # total hours worked
 workedMins=0      # total mins worked
 minsDaytime=""    # str "mins+daytime" (am or pm)
 complement=0      # int paid clocked-in-time
+#punchStrTimes=(6:30am 11:25am 11:40am 5:30pm)  # Tester vars1
+#punchStrTimes=(6:10am 11:50am 11:40am 5:30pm)  # Tester vars2
 
 ###
 ### Program Title
@@ -55,14 +57,12 @@ instructions() {
 ### Get user input
 ###
 getPunchTimes() {
-    punchStrTimes=(6:30am 11:25am 11:40am 5:30pm)  # hardcoded
-    #punchStrTimes=(6:10am 11:50am 11:40am 5:30pm)  # hardcoded
-    #j=0
-    #for i in ${menu[*]}
-    #do
-    #    read -p "$i: " punchStrTimes[$j]
-    #    let j++
-    #done
+    j=0
+    for i in ${menu[*]}
+    do
+        read -p "$i: " punchStrTimes[$j]
+        let j++
+    done
 }
 
 ###
@@ -133,12 +133,12 @@ sumTimes() {
     # validate mins
     if [ $workedMins -gt $mphr ]
     then
-        echo ''
         let workedHours++
         let workedMins-=mphr
     fi
 
 }
+
 ###
 ### Display results
 ###
@@ -152,6 +152,7 @@ displayResults() {
     echo "=================="
     printf "Total    : %s:%s\n\n" $workedHours $workedMins
 }
+
 ###
 ### Main
 ###
