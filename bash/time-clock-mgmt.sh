@@ -65,10 +65,6 @@ parsePunchStrTimes() {
 calcHours() {
     for ((i=0; i<${#punchStrTimes[@]}; i+=2)) {
         let sumHours[$i/2]=(punchedHours[$i+1]-punchedHours[$i])
-        #let sumHours+=(punchedHours[3]-punchedHours[2])
-        #######################################################################
-        echo "DEBUG :: sumHours   : " ${sumHours[*]}
-        #######################################################################
     }
 }
 
@@ -89,12 +85,27 @@ calcMins() {
         else
             let sumMins[$i/2]=sumMins[$i/2]%mphr
         fi
-        #######################################################################
-        echo "complement   : " $complement
-        echo "DEBUG :: sumHours   : " ${sumHours[*]}
-        echo "DEBUG :: sumMins    : " ${sumMins[*]}
-        #######################################################################
     }
+}
+
+###
+### Sum calculated hours and mins
+###
+sumTimes() {
+
+    for ((i=0; i<${#punchStrTimes[@]}; i+=2)) {
+        let workedHours+=sumHours[$i]+sumHours[i+1]
+        let workedMins+=sumMins[$i]+sumMins[i+1]
+    }
+
+    # validate mins
+    if [ $workedMins -gt $mphr ]
+    then
+        echo ''
+        let workedHours++
+        let workedMins-=mphr
+    fi
+
 }
 
 ###
@@ -109,19 +120,25 @@ display() {
     echo ""
     echo "sumHours     : " ${sumHours[*]}
     echo "sumMins      : " ${sumMins[*]}
-    echo "workedMins   : " $workedMins
     echo "workedHours  : " $workedHours
+    echo "workedMins   : " $workedMins
+    echo "Total Time   : " $workedHours":"$workedMins
     echo ""
 }
-###############****************************************************************
-# Test Functions
-parsePunchStrTimes
-echo ""
-echo "punchStrTimes: " ${punchStrTimes[*]}
-echo "punchedHours : " ${punchedHours[*]}
-echo "punchedMins  : " ${punchedMins[*]}
-echo ""
-calcHours
-calcMins
-display
-###############****************************************************************
+
+###
+### Main
+###
+main() {
+    parsePunchStrTimes
+    calcHours
+    calcMins
+    sumTimes
+    display
+}
+
+###
+### Run Program
+###
+main
+
