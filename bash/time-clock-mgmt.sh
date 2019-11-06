@@ -6,13 +6,14 @@
 #     Outputs the total hours worked that day.
 # Date: 2019-11-05
 # Revised:
-#     <revision date>
+#     2019-11-06
 
 ###
 ### Declare vars
 ###
 mphr=60           # Minutes per hour.
 hpd=24            # Hours per day.
+menu=(Time-In Lunch-Out Lunch-In Time-Out)
 punchStrTimes=()  # str [timeIn, lunchOut, lunchIn, timeOut]
 punchedHours=()   # int [timeIn, lunchOut, lunchIn, timeOut]
 punchedMins=()    # int [timeIn, lunchOut, lunchIn, timeOut]
@@ -24,20 +25,51 @@ minsDaytime=""    # str "mins+daytime" (am or pm)
 complement=0      # int paid clocked-in-time
 
 ###
+### Program Title
+###
+prgm_title() {
+    echo "==================================================================="
+    echo "|                     Timeclock Management                        |"
+    echo "==================================================================="
+}
+###
+### Instructions
+###
+instructions() {
+    for i in 5
+    do
+        echo -e "\n"
+    done
+    prgm_title
+    echo -e "\nInstructions:"
+    echo -e "-------------\n"
+    echo "1) The format requires a colon ':' to separate hours from minutes"
+    echo "2) The time of day must be explicit to 'am' or 'pm'"
+    echo ""
+    read -p "Press Enter to Continue..."
+    (clear)
+    prgm_title
+    echo -e "Enter time with following format: 5:00pm\n"
+}
+###
 ### Get user input
 ###
-punchStrTimes=(6:30am 11:25am 11:40am 5:30pm)  # hardcoded to be deleted later
-#punchStrTimes=(6:10am 11:50am 11:40am 5:30pm)  # hardcoded to be deleted later
-#read -p "Time-In  : " punchStrTimes[0]        # THIS WORKS!
-#read -p "Lunch-Out: " punchStrTimes[1]
-#read -p "Lunch-In : " punchStrTimes[2]
-#read -p "Time-Out : " punchStrTimes[3]
+getPunchTimes() {
+    punchStrTimes=(6:30am 11:25am 11:40am 5:30pm)  # hardcoded
+    #punchStrTimes=(6:10am 11:50am 11:40am 5:30pm)  # hardcoded
+    #j=0
+    #for i in ${menu[*]}
+    #do
+    #    read -p "$i: " punchStrTimes[$j]
+    #    let j++
+    #done
+}
 
 ###
 ### Parse Hours, Mins, Daytime
 ###
 parsePunchStrTimes() {
-    for (( i=0; i<${#punchStrTimes[@]}; i++))
+    for ((i=0; i<${#punchStrTimes[@]}; i++))
     do
         # Parse using ':'
         punchedHours+=(${punchStrTimes[$i]%%:*})
@@ -107,34 +139,30 @@ sumTimes() {
     fi
 
 }
-
 ###
-### Display user input
+### Display results
 ###
-display() {
+displayResults() {
+    clear
+    prgm_title
     echo ""
-    echo "punchStrTimes: " ${punchStrTimes[*]}
-    echo ""
-    echo "punchedHours : " ${punchedHours[*]}
-    echo "punchedMins  : " ${punchedMins[*]}
-    echo ""
-    echo "sumHours     : " ${sumHours[*]}
-    echo "sumMins      : " ${sumMins[*]}
-    echo "workedHours  : " $workedHours
-    echo "workedMins   : " $workedMins
-    echo "Total Time   : " $workedHours":"$workedMins
-    echo ""
+    for ((i=0; i<${#punchStrTimes[@]}; i++)) {
+        printf "%-9s: %7s\n" ${menu[$i]} ${punchStrTimes[$i]}
+    }
+    echo "=================="
+    printf "Total    : %s:%s\n\n" $workedHours $workedMins
 }
-
 ###
 ### Main
 ###
 main() {
+    instructions
+    getPunchTimes
     parsePunchStrTimes
     calcHours
     calcMins
     sumTimes
-    display
+    displayResults
 }
 
 ###
