@@ -12,7 +12,6 @@
 ### Declare vars
 ###
 mphr=60           # Minutes per hour.
-hpd=24            # Hours per day.
 menu=(Time-In Lunch-Out Lunch-In Time-Out)
 punchStrTimes=()  # str [timeIn, lunchOut, lunchIn, timeOut]
 punchedHours=()   # int [timeIn, lunchOut, lunchIn, timeOut]
@@ -23,17 +22,18 @@ workedHours=0     # total hours worked
 workedMins=0      # total mins worked
 minsDaytime=""    # str "mins+daytime" (am or pm)
 complement=0      # int paid clocked-in-time
-punchStrTimes=(6:30am 11:25am 11:40am 5:50pm)  # Tester vars1
+#punchStrTimes=(6:30am 11:25am 11:40am 5:30pm)  # Tester vars1
 #punchStrTimes=(6:10am 11:50am 11:40am 5:30pm)  # Tester vars2
 
 ###
 ### Program Title
 ###
 prgm_title() {
-    echo "==================================================================="
-    echo "|                     Timeclock Management                        |"
-    echo "==================================================================="
+    echo "=================================================================="
+    echo "|                    Timeclock Management                        |"
+    echo "=================================================================="
 }
+
 ###
 ### Instructions
 ###
@@ -53,6 +53,7 @@ instructions() {
     prgm_title
     echo -e "Enter time with following format: 5:00pm\n"
 }
+
 ###
 ### Get user input
 ###
@@ -80,10 +81,13 @@ parsePunchStrTimes() {
         elif [[ $minsDaytime = *"p"* ]]; then
             punchedMins+=(${minsDaytime%%p*})
 
-            # Convert to military time
-            punchedHours[$i]=$((punchedHours[$i] + 12))
+            # Convert to military time after 12pm
+            if [[ ${punchedHours[$i]} -lt 12 ]]; then
+                punchedHours[$i]=$((punchedHours[$i] + 12))
+            fi
 
         else
+            echo "TIMES WITHOUT DAYTIMES WILL ASSUME 'AM'"
             punchedMins+=$((minsDaytime))
         fi
     done
@@ -119,7 +123,7 @@ calcMins() {
 }
 
 ###
-### Sum pre & post lunch HH:MM
+### Sum pre and post lunch HH:MM
 ###
 sumTimes() {
 
@@ -129,7 +133,7 @@ sumTimes() {
     }
 
     # validate mins
-    if [ $workedMins -gt $mphr ]
+    if [[ $workedMins -gt $mphr ]]
     then
         let workedHours++
         let workedMins-=mphr
@@ -141,54 +145,31 @@ sumTimes() {
 ### Display results
 ###
 displayResults() {
-    #clear
-    #prgm_title
+    clear
+    prgm_title
     echo ""
     for ((i=0; i<${#punchStrTimes[@]}; i++)) {
-        printf "%-9s: %7s\n" ${menu[$i]} ${punchStrTimes[$i]}
+        printf "%-10s:%7s\n" ${menu[$i]} ${punchStrTimes[$i]}
     }
-    echo "=================="
-    printf "Total    : %s:%s\n\n" $workedHours $workedMins
+    echo "=================================="
+    printf "Total Time: %d hours and %d minutes\n" $workedHours $workedMins
 }
 
-debug() {
-    echo ""
-    echo "punchStrTimes: " ${punchStrTimes[*]}
-    echo ""
-    echo "punchedHours : " ${punchedHours[*]}
-    echo "punchedMins  : " ${punchedMins[*]}
-    echo ""
-    echo "sumHours     : " ${sumHours[*]}
-    echo "sumMins      : " ${sumMins[*]}
-    echo "workedHours  : " $workedHours
-    echo "workedMins   : " $workedMins
-    echo "Total Time   : " $workedHours":"$workedMins
-    echo ""
-}
 ###
 ### Main
 ###
 main() {
-#    instructions
-#    getPunchTimes
-    echo "                                                  1ST "
-    debug
+    instructions
+    getPunchTimes
     parsePunchStrTimes
     calcHours
-    echo "                                         2nd post-calcHours()"
-    debug
     calcMins
-    echo "                                         3rd post-calcMins()"
-    debug
     sumTimes
-    echo "                                         4th post-sumTimes()"
-    debug
     displayResults
-    echo "                                                   LAST "
-    debug
 }
 
 ###
 ### Run Program
 ###
 main
+
