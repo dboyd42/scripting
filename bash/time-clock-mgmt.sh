@@ -63,12 +63,14 @@ parsePunchStrTimes() {
 ### Calulate hours worked
 ###
 calcHours() {
-    let sumHours+=(punchedHours[1]-punchedHours[0])
-    #let sumHours+=(punchedHours[3]-punchedHours[2])
-    ###########################################################################
-    echo ""
-    echo "DEBUG :: sumHours   : " ${sumHours[*]}
-    ###########################################################################
+    for ((i=0; i<=${#punchStrTimes[@]}; i+=2)) {
+        let sumHours[$i/2]=(punchedHours[$i+1]-punchedHours[$i])
+        #let sumHours+=(punchedHours[3]-punchedHours[2])
+        #######################################################################
+        echo ""
+        echo "DEBUG :: sumHours   : " ${sumHours[*]}
+        #######################################################################
+    }
 }
 
 ###
@@ -79,9 +81,9 @@ calcMins() {
     let complement=mphr-punchedMins[0]
     # Add compliment to punch-Out's minutes
     let sumMins+=complement+punchedMins[1]
-    ###########################################################################
+    #######################################################################
     echo "DEBUG :: sumMins    : " ${sumMins[*]}
-    ###########################################################################
+    #######################################################################
 
     ###
     ### Convert ints to mins
