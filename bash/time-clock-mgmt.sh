@@ -2,7 +2,7 @@
 # Copyright 2019 David Boyd, all rights reserved
 # Program: Timeclock Management
 # Description:
-#     This program manages time-in and time-outroutines for an employee.
+#     This program manages time-in and time-out routines for an employee.
 #     The program outputs the total hours worked for that day.
 # Date: 2019-11-05
 # Revised:
@@ -30,7 +30,7 @@ complement=0      # int paid clocked-in-time
 ###
 prgm_title() {
     echo "=================================================================="
-    echo "|                    Timeclock Management                        |"
+    echo "|                    Time Clock Management                       |"
     echo "=================================================================="
 }
 
