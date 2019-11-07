@@ -18,6 +18,17 @@ Contents
 | runJavac     | An alternative to using a Makefile for compiling and |
 |              | running Java programs                                |
 +--------------+------------------------------------------------------+
+| search       | Searches <pattern> in files including pdfs           |
++--------------+------------------------------------------------------+
+| time clock   | Calculates hours worked for an employee              |
+| mgmt         |                                                      |
++--------------+------------------------------------------------------+
+
++-----------+------------------------------------+
+| Directory | Description                        |
++===========+====================================+
+| output    | Shows sample outputs from programs |
++-----------+------------------------------------+
 
 Bash Contents
 =============
