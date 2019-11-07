@@ -1,0 +1,34 @@
+./time-clock-mgmt.sh
+
+
+==================================================================
+|                    Time Clock Management                       |
+==================================================================
+
+Instructions:
+-------------
+
+1) The format requires a colon ':' to separate hours from minutes
+2) The time of day must be explicit to 'am' or 'pm'
+
+Press Enter to Continue...
+==================================================================
+|                    Time Clock Management                       |
+==================================================================
+Enter time with following format: 5:00pm
+
+Time-In  : 6:30am
+Lunch-Out: 11:25am
+Lunch-In : 11:40am
+Time-Out : 5:30pm
+==================================================================
+|                    Time Clock Management                       |
+==================================================================
+
+Time-In   : 6:30am
+Lunch-Out :11:25am
+Lunch-In  :11:40am
+Time-Out  : 5:30pm
+==================================
+Total Time: 10 hours and 45 minutes
+
