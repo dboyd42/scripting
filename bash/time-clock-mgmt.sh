@@ -126,7 +126,6 @@ calcMins() {
 ### Sum pre and post lunch HH:MM
 ###
 sumTimes() {
-
     for ((i=0; i<${#punchStrTimes[@]}; i+=2)) {
         let workedHours+=sumHours[$i]+sumHours[i+1]
         let workedMins+=sumMins[$i]+sumMins[i+1]
