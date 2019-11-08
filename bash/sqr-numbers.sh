@@ -11,11 +11,11 @@
 ###
 ### Declare vars
 ###
-array=()
-sqrArr=()
+array=()    # original array
+sqrArr=()   # modified array
 inFile="./data-files/arr01.txt"
 tempFile="./temp.txt"
-outFile="./outFile-sqr(N).txt"
+outFile="./outFile_sqr-N"
 
 ###
 ### Read File Into an Array
@@ -23,10 +23,8 @@ outFile="./outFile-sqr(N).txt"
 if [[ -f "$inFile" ]]; then
     # Read file
     while IFS='/' read -r line; do
-        echo "line = $line"
         # strip '/' from file
         line=${line///}
-        echo "line after str manip = "$line
         # Read $line into array
         read -r -a array <<< $line
     done < $inFile
