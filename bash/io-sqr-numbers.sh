@@ -21,17 +21,15 @@ outFile="./outFile-sqr(N).txt"
 ### Read File Into an Array
 ###
 if [[ -f "$inFile" ]]; then
-
     # Read file
     while IFS='/' read -r line; do
         echo "line = $line"
-        # string manip -> ${string//substring/replacement}
+        # strip '/' from file
         line=${line///}
         echo "line after str manip = "$line
-        # Read line into array
+        # Read $line into array
         read -r -a array <<< $line
     done < $inFile
-
 else
     # ask for new file
     echo 'Invalid file'
@@ -45,9 +43,4 @@ do
     echo $(($i ** 2)) >> $outFile
     sqrArr+=$(($i ** 2))
 done
-
-
-echo "array = "${array[@]}
-echo "line = "$line
-echo "sqArr = "${sqrArr[@]}
 
