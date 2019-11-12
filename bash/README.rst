@@ -20,6 +20,9 @@ Contents
 +--------------+------------------------------------------------------+
 | search       | Searches <pattern> in files including pdfs           |
 +--------------+------------------------------------------------------+
+| sqr-numbers  | Reads in a file of numbers, squares their values,    |
+|              | then writes output to another file.                  |
++--------------+------------------------------------------------------+
 | time clock   | Calculates hours worked for an employee              |
 | mgmt         |                                                      |
 +--------------+------------------------------------------------------+
