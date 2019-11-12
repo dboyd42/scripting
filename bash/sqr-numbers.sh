@@ -64,7 +64,6 @@ readFile() {
 sqrNumbers() {
 for i in "${array[@]}"
     do
-        #echo $(($i ** 2)) >> $outFile
         sqrArr[$i]=$(( $i ** 2 ))
     done
 }
@@ -80,7 +79,7 @@ writeFile() {
 ### Main
 ###
 main() {
-    checkFile "$inFile"
+    checkFile
     readFile
     sqrNumbers
     getOutFilename
