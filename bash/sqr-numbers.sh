@@ -13,35 +13,35 @@
 ###
 array=()    # original array
 sqrArr=()   # modified array
-#inFile="./data-files/arr01.txt"
-inFile="/dev/null"
-tempFile="./temp.txt"
-outFile="./outFile_sqr-N"
+inFile=$1   # @parm CLI[1]
+outFile="./outfile-sqr-numbers.txt"
 boolFileExists=0
 
 ###
-### Check for file existence
+### Check File Status
 ###
-fileExists() {
-    # check if file is exists
-    if [ -f "$1" ]; then
+checkFile() {
+    if [ -f "$inFile" ]; then
         boolFileExists=1
-        inFile=$1
-        echo "if -f \$1"
-    elif [ -r $inFile ]; then
-        boolFileExists=1
-        echo "elif -f \$inFile"
+        inFile=$inFile
     else
-        read -p "Enter filename: " $inFile
-        #clear
-        #data-files/arr01.txt
-        fileExists $inFile
-
+        getFile
     fi
 }
 
+
 ###
-### Read File Into an Array
+### Get File
+###
+getFile() {
+    # check if file is exists
+    read -p "Enter filename: " inFile
+    checkFile "$inFile"
+    clear
+}
+
+###
+### Read inFile into an Array
 ###
 readFile() {
     if [[ $boolFileExists -eq 1 ]]; then
@@ -52,17 +52,31 @@ readFile() {
             read -r -a array <<< $line
         done < $inFile
     fi
+    echo "readFile() array    = ${array[@]}"
 }
 
 ###
-### Calculate & Write Squared Values to File
+### Square Numbers
 ###
+sqrNumbers() {
 for i in "${array[@]}"
-do
-    echo $(($i ** 2)) >> $outFile
-    sqrArr+=$(($i ** 2))
-done
+    do
+        #echo $(($i ** 2)) >> $outFile
+        sqrArr[$i]=$(( $i ** 2 ))
+    done
+}
 
-fileExists "$inFile"
+###
+### Write Squared Values to File
+###
+writeFile() {
+    echo "${sqrArr[@]}" >> $outFile
+}
+
+checkFile "$inFile"
+readFile
+sqrNumbers
+writeFile
+#echo "sqrNumbers() sqrArr =" ${sqrArr[*]}
 echo $boolFileExists
 
