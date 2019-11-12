@@ -36,7 +36,6 @@ getFile() {
     # check if file is exists
     read -p "Enter filename: " inFile
     checkFile "$inFile"
-    clear
 }
 
 ###
