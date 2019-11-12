@@ -1,0 +1,16 @@
+$ cat data-files/sqr-numbers.txt
+/2 4 6 8 10 12 14 16 18/
+
+$ ./sqr-numbers.sh ./data-files/sqr-numbers.txt
+Save to: output/sqr-numbers.txt
+
+$ cat output/sqr-numbers.txt
+4 16 36 64 100 144 196 256 324
+
+$ ./sqr-numbers.sh
+Enter filename: data-files/sqr-numbers.txt
+Save to: output/sqr-numbers.txt
+
+$ cat output/sqr-numbers.txt
+4 16 36 64 100 144 196 256 324
+
