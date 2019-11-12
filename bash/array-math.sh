@@ -14,6 +14,7 @@
 boolFileExists=0  # value for inFile's existence
 decimals=2        # decimal places used for scale
 numFiles=2        # number of input files
+outFile=""        # output filename
 tempArr=()        # holds the temp input arrays
 inFile=()         # list of input files
 inputArrX=()      # first array
@@ -23,25 +24,45 @@ outputArrZ=()     # square-root values
 
 
 # used for hardcoding while testing
-    inFile[0]=x-arr.txt         # function below works
-    inFile[1]=y-arr.txt         # hardcoded - to be deleted later
-    boolFileExists=1
+#    inFile[0]=x-arr.txt         # function below works
+#    inFile[1]=y-arr.txt         # hardcoded - to be deleted later
+#    boolFileExists=1
 
 
+###
+### Check File Status
+###
+checkFile() {
+    echo
+    if [ -f $1 ]; then
+        boolFileExists=1
+    else
+        boolFileExists=0
+        echo "Invalid filename"
+    fi
+}
 ###
 ### Get Input Files
 ###
 getInFiles() {
-    for (( i=1; i<$numFiles+1; ++i ))
+    for (( i=0; i<$numFiles; ++i ))
     do
         boolFileExists=0
-        while [boolFileExists -eq 0]
+        while [ $boolFileExists -eq 0 ]
         do
-           read -p "Enter input file $i: " inFile[$i]
-           echo "infile $i: " ${inFile[$i]}
+            let j=($i +1)
+            read -p "Enter input file $j: " inFile[$i]
            checkFile "${inFile[$i]}"
         done
     done
+}
+
+###
+### Get Output File
+###
+###
+getOutFile() {
+    read -p "Save to: " outFile
 }
 
 ###
@@ -55,43 +76,44 @@ multiplyArrays() {
     do
         multiArr[$i]=$(( ${inputArrX[$i]} * ${inputArrY[$i]} ))
     done
-    echo "multiArr's : " ${multiArr[@]}
 }
 
 ###
 ### Read inFile into an Array
 ###
-#readFile() {
+readFile() {
+    readarray -d ' ' inputArrX < ${inFile[0]}
+    readarray -d ' ' inputArrY < ${inFile[1]}
 
-#}
+}
 
 ###
 ### Square Root Array
 ###
 sqrRoot() {
-    echo
-    #for i in "${multiArr[@]}"
+    size=20
     for (( i=0; i<$size; ++i ))
     do
         outputArrZ[$i]=$( bc <<< "scale=$decimals; sqrt(${multiArr[$i]})")
                   #avg=$( bc <<< "scale=$decimals;$sum/$numbers_length")
     done
-    echo "output z's : " ${outputArrZ[@]}
 }
 
+###
+### Write to Output File
+###
+writeFile() {
+    echo "${inputArrX[@]}${inputArrY[@]}${outputArrZ[@]}" > $outFile
+}
 ###
 ### main
 ###
 main() {
     # get input filenames
-    #getInFiles
-    echo ${inFile[0]}   # x-arr.txt
-    echo ${inFile[1]}   # y-arr.txt
-    #checkfiles
+    getInFiles
 
-    # Get input arrays                                  ### stderr: != array
-    readarray -d ' ' inputArrX < ${inFile[0]}
-    readarray -d ' ' inputArrY < ${inFile[1]}
+    # Get input arrays
+    readFile
 
     # multiple arrays
     multiplyArrays
@@ -99,13 +121,11 @@ main() {
     # square root multiplied array
     sqrRoot
 
-    # square root multipled array
+    # Get output file
+    getOutFile
 
-    # display output
-    echo "--------------------"
-    echo "arrX =" ${inputArrX[@]} "| size = " ${#inputArrX[@]}
-    echo "arrY =" ${inputArrY[@]} "| size = " ${#inputArrY[@]}
-
+    # Write to outfile
+    writeFile
 }
 
 ###
