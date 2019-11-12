@@ -1,6 +1,6 @@
 #!/bin/bash
 # Copyright 2019 David Boyd, all rights reserved
-# Program: Square Arrays - Read File
+# Program: Square Numbers - Read File
 # Description:
 #     This script reads a file then squares of all the numbers read.
 #     The output is then written to an output file.
