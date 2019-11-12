@@ -73,7 +73,7 @@ for i in "${array[@]}"
 ### Write Squared Values to File
 ###
 writeFile() {
-    echo "${sqrArr[@]}" >> $outFile
+    echo "${sqrArr[@]}" > $outFile
 }
 
 ###
