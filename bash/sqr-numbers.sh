@@ -44,6 +44,7 @@ getFile() {
 getOutFilename() {
    read -p "Save to: " outFile
 }
+
 ###
 ### Read inFile into an Array
 ###
