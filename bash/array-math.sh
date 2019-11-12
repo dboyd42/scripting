@@ -22,13 +22,6 @@ inputArrY=()      # second array
 multiArr=()       # multiplied arrays value
 outputArrZ=()     # square-root values
 
-
-# used for hardcoding while testing
-#    inFile[0]=x-arr.txt         # function below works
-#    inFile[1]=y-arr.txt         # hardcoded - to be deleted later
-#    boolFileExists=1
-
-
 ###
 ### Check File Status
 ###
@@ -91,7 +84,8 @@ readFile() {
 ### Square Root Array
 ###
 sqrRoot() {
-    size=20
+    #findGreatestSize
+    size=${#inputArrX[@]}
     for (( i=0; i<$size; ++i ))
     do
         outputArrZ[$i]=$( bc <<< "scale=$decimals; sqrt(${multiArr[$i]})")
@@ -109,22 +103,11 @@ writeFile() {
 ### main
 ###
 main() {
-    # get input filenames
     getInFiles
-
-    # Get input arrays
     readFile
-
-    # multiple arrays
     multiplyArrays
-
-    # square root multiplied array
     sqrRoot
-
-    # Get output file
     getOutFile
-
-    # Write to outfile
     writeFile
 }
 
