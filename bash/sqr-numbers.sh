@@ -6,15 +6,15 @@
 #     The output is then written to an output file.
 # Date: Thu Nov 7 2019
 # Revised:
-#     <revision date>
+#       Mon Nov 11 2019
 
 ###
 ### Declare vars
 ###
 array=()    # original array
-sqrArr=()   # modified array
+sqrArr=()   # squared array
 inFile=$1   # @parm CLI[1]
-outFile="./outfile-sqr-numbers.txt"
+outFile=""  # filename to write to
 boolFileExists=0
 
 ###
@@ -29,7 +29,6 @@ checkFile() {
     fi
 }
 
-
 ###
 ### Get File
 ###
@@ -40,6 +39,12 @@ getFile() {
     clear
 }
 
+###
+### Get Output Filename
+###
+getOutFilename() {
+   read -p "Save to: " outFile
+}
 ###
 ### Read inFile into an Array
 ###
@@ -52,7 +57,6 @@ readFile() {
             read -r -a array <<< $line
         done < $inFile
     fi
-    echo "readFile() array    = ${array[@]}"
 }
 
 ###
@@ -73,10 +77,19 @@ writeFile() {
     echo "${sqrArr[@]}" >> $outFile
 }
 
-checkFile "$inFile"
-readFile
-sqrNumbers
-writeFile
-#echo "sqrNumbers() sqrArr =" ${sqrArr[*]}
-echo $boolFileExists
+###
+### Main
+###
+main() {
+    checkFile "$inFile"
+    readFile
+    sqrNumbers
+    getOutFilename
+    writeFile
+}
+
+###
+### Run Program
+###
+main
 
