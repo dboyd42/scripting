@@ -64,4 +64,4 @@ sumArray() {
 }
 ### Run main program                                                        ###
 main "$@"
-
+exit 0
