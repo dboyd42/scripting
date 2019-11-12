@@ -1,0 +1,110 @@
+$ ./menu-driven.sh
+
+        Main Menu
+    1--------------------ADD
+    2--------------------SUB
+    3--------------------MPY
+    4--------------------MOD
+    5--------------------DIV
+    6--------------------EXIT
+
+Enter Choice [1-6]: 0
+
+Invalid Option
+Press Enter to Continue...
+
+        Main Menu
+    1--------------------ADD
+    2--------------------SUB
+    3--------------------MPY
+    4--------------------MOD
+    5--------------------DIV
+    6--------------------EXIT
+
+Enter Choice [1-6]: 1
+
+Enter first number : 3
+Enter second number: 7
+
+Sum = 12
+
+Press Enter to Continue...
+
+        Main Menu
+    1--------------------ADD
+    2--------------------SUB
+    3--------------------MPY
+    4--------------------MOD
+    5--------------------DIV
+    6--------------------EXIT
+
+Enter Choice [1-6]: 2
+
+Enter first number : 20
+Enter second number: 48
+
+Difference = -28
+
+Press Enter to Continue...
+
+        Main Menu
+    1--------------------ADD
+    2--------------------SUB
+    3--------------------MPY
+    4--------------------MOD
+    5--------------------DIV
+    6--------------------EXIT
+
+Enter Choice [1-6]: 3
+
+Enter first number : 5
+Enter second number: 8
+
+Product = 40
+
+Press Enter to Continue...
+
+        Main Menu
+    1--------------------ADD
+    2--------------------SUB
+    3--------------------MPY
+    4--------------------MOD
+    5--------------------DIV
+    6--------------------EXIT
+
+Enter Choice [1-6]: 4
+
+Enter first number : 10
+Enter second number: 4
+
+Modulus = 2
+
+Press Enter to Continue...
+
+        Main Menu
+    1--------------------ADD
+    2--------------------SUB
+    3--------------------MPY
+    4--------------------MOD
+    5--------------------DIV
+    6--------------------EXIT
+
+Enter Choice [1-6]: 5
+
+Enter first number : 23
+Enter second number: 7
+
+Quotient = 3.28
+
+Press Enter to Continue...
+
+        Main Menu
+    1--------------------ADD
+    2--------------------SUB
+    3--------------------MPY
+    4--------------------MOD
+    5--------------------DIV
+    6--------------------EXIT
+
+Enter Choice [1-6]: 6
+
