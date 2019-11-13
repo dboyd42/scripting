@@ -45,7 +45,7 @@ getInFiles() {
         do
             let j=($i +1)
             read -p "Enter input file $j: " inFile[$i]
-           checkFile "${inFile[$i]}"
+            checkFile "${inFile[$i]}"
         done
     done
 }
@@ -53,14 +53,12 @@ getInFiles() {
 ###
 ### Get Output File
 ###
-###
 getOutFile() {
     read -p "Save to: " outFile
 }
 
 ###
 ### Multiply arrays
-###
 ###
 multiplyArrays() {
     #findGreatestSize
