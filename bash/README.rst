@@ -6,29 +6,34 @@ Bash
 Contents
 ========
 
-+---------------+-------------------------------------------------------------+
-| Program       | Description                                                 |
-+===============+=============================================================+
-| avgSum        | Calculates the average and sum of 10 integers               |
-+---------------+-------------------------------------------------------------+
-| conditionals  | Examplifies conditional statments                           |
-+---------------+-------------------------------------------------------------+
-| looping       | Examplifies loops: for / while                              |
-+---------------+-------------------------------------------------------------+
-| randomnumbers | Creates an n size array of random numbers with/out a range. |
-|               | Then writes output to a file.                               |
-+---------------+-------------------------------------------------------------+
-| runJavac      | An alternative to using a Makefile for compiling and        |
-|               | running Java programs                                       |
-+---------------+-------------------------------------------------------------+
-| search        | Searches <pattern> in files including pdfs                  |
-+---------------+-------------------------------------------------------------+
-| sqr-numbers   | Reads in a file of numbers, squares their values,           |
-|               | then writes output to another file.                         |
-+---------------+-------------------------------------------------------------+
-| time clock    | Calculates hours worked for an employee                     |
-| mgmt          |                                                             |
-+---------------+-------------------------------------------------------------+
++------------------------+-------------------------------------------------------------+
+| Program                | Description                                                 |
++========================+=============================================================+
+| array-math             | Multiplies two arrays from files; then outputs the square   |
+|                        | root of their product to another file                       |
++------------------------+-------------------------------------------------------------+
+| avgSum                 | Calculates the average and sum of 10 integers               |
++------------------------+-------------------------------------------------------------+
+| conditionals           | Examplifies conditional statments                           |
++------------------------+-------------------------------------------------------------+
+| looping                | Examplifies loops: for / while                              |
++------------------------+-------------------------------------------------------------+
+| menu-driven-calculator | Exemplifies a menu driven program that simulates a basic    |
+|                        | calculator                                                  |
++------------------------+-------------------------------------------------------------+
+| randomnumbers          | Creates an n size array of random numbers with/out a range. |
+|                        | Then writes output to a file.                               |
++------------------------+-------------------------------------------------------------+
+| runJavac               | An alternative to using a Makefile for compiling and        |
+|                        | running Java programs                                       |
++------------------------+-------------------------------------------------------------+
+| search                 | Searches <pattern> in files including pdfs                  |
++------------------------+-------------------------------------------------------------+
+| sqr-numbers            | Reads in a file of numbers, squares their values,           |
+|                        | then writes output to another file.                         |
++------------------------+-------------------------------------------------------------+
+| time clock mgmt        | Calculates hours worked for an employee                     |
++------------------------+-------------------------------------------------------------+
 
 +------------+------------------------------------------+
 | Directory  | Description                              |
