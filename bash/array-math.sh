@@ -6,7 +6,7 @@
 #     then writes the product's square root to an out file.
 # Date: Tue Nov 12 2019
 # Revised:
-#     <revision date>
+#     Wed Nov 13 2019
 
 ###
 ### Declare Vars
@@ -58,11 +58,19 @@ getOutFile() {
 }
 
 ###
+### Set Greatest (Array) Size
+###
+setGreatestSize() {
+    echo
+    size=(${#inputArrX[*]} -ge ${#inputArrY[*]} \
+          ? ${#inputArrX[*]} : ${#inputArrY[*]})
+}
+
+###
 ### Multiply arrays
 ###
 multiplyArrays() {
-    #findGreatestSize
-    size=${#inputArrX[@]}
+    setGreatestSize  # find max array size
     for (( i=0; i<$size; ++i ))
     do
         multiArr[$i]=$(( ${inputArrX[$i]} * ${inputArrY[$i]} ))
@@ -82,12 +90,9 @@ readFile() {
 ### Square Root Array
 ###
 sqrRoot() {
-    #findGreatestSize
-    size=${#inputArrX[@]}
     for (( i=0; i<$size; ++i ))
     do
         outputArrZ[$i]=$( bc <<< "scale=$decimals; sqrt(${multiArr[$i]})")
-                  #avg=$( bc <<< "scale=$decimals;$sum/$numbers_length")
     done
 }
 
