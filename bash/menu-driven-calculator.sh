@@ -1,6 +1,6 @@
 #!/bin/bash
 # Copyright 2019 David Boyd, all rights reserved
-# Program: Menu-Driven
+# Program: Menu-Driven Calculator
 # Description:
 #     Acts in place of a basic calculator
 # Date: Tue Nov 12 2019
@@ -75,7 +75,7 @@ Perform() {
                 echo
                 SetNumbers
                 SetMod $number1 $number2
-                echo -e "\nModulus = $remainder\n"
+                echo -e "\nRemainder = $remainder\n"
                 read -p "Press Enter to Continue..." null
                 clear
                 ;;
@@ -157,7 +157,6 @@ main() {
     do
         Prgm_title
         SetChoice
-        #validate choice
         Perform $choice
     done
 }

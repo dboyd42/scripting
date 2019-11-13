@@ -1,4 +1,4 @@
-$ ./menu-driven.sh
+$ ./menu-driven-calculator.sh
 
         Main Menu
     1--------------------ADD
@@ -77,7 +77,7 @@ Enter Choice [1-6]: 4
 Enter first number : 10
 Enter second number: 4
 
-Modulus = 2
+Remainder = 2
 
 Press Enter to Continue...
 
