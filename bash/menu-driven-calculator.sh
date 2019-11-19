@@ -118,6 +118,9 @@ SetAdd() {
 ###
 SetDiv() {
     quotient=$( bc <<< "scale=2; ($1 / $2)")
+    # For use w/o 'bc' --In-Progress
+    #+Doesn't pass $1 or $number1 --hardcoding works
+    #quotient=$(awk 'BEGIN {print $number1 / 5 }')
 }
 
 
