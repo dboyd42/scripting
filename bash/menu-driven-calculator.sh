@@ -117,10 +117,9 @@ SetAdd() {
 ### DIV
 ###
 SetDiv() {
-    quotient=$( bc <<< "scale=2; ($1 / $2)")
-    # For use w/o 'bc' --In-Progress
-    #+Doesn't pass $1 or $number1 --hardcoding works
-    #quotient=$(awk 'BEGIN {print $number1 / 5 }')
+    #quotient=$( bc <<< "scale=2; ($1 / $2)")
+    # If using Windows Git-Bash, use 'awk' instead of 'bc'
+    quotient=$(awk -v n1="$1" -v n2="$2" 'BEGIN {print n1/n2}')
 }
 
 
