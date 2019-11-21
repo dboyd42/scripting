@@ -45,57 +45,57 @@ Exit() {
 ###
 Perform() {
     case "$1" in
-            1)
-                echo
-                SetNumbers
-                SetAdd $number1 $number2
-                echo -e "\nSum = $sum\n"
-                read -p "Press Enter to Continue..." null
-                clear
-                ;;
+        1)
+            echo
+            SetNumbers
+            SetAdd $number1 $number2
+            echo -e "\nSum = $sum\n"
+            read -p "Press Enter to Continue..." null
+            clear
+            ;;
 
-            2)
-                echo
-                SetNumbers
-                SetSub $number1 $number2
-                echo -e "\nDifference = $difference\n"
-                read -p "Press Enter to Continue..." null
-                clear
-                ;;
+        2)
+            echo
+            SetNumbers
+            SetSub $number1 $number2
+            echo -e "\nDifference = $difference\n"
+            read -p "Press Enter to Continue..." null
+            clear
+            ;;
 
-            3)
-                echo
-                SetNumbers
-                SetMpy $number1 $number2
-                echo -e "\nProduct = $product\n"
-                read -p "Press Enter to Continue..." null
-                clear
-                ;;
-            4)
-                echo
-                SetNumbers
-                SetMod $number1 $number2
-                echo -e "\nRemainder = $remainder\n"
-                read -p "Press Enter to Continue..." null
-                clear
-                ;;
-            5)
-                echo
-                SetNumbers
-                SetDiv $number1 $number2
-                echo -e "\nQuotient = $quotient\n"
-                read -p "Press Enter to Continue..." null
-                clear
-                ;;
+        3)
+            echo
+            SetNumbers
+            SetMpy $number1 $number2
+            echo -e "\nProduct = $product\n"
+            read -p "Press Enter to Continue..." null
+            clear
+            ;;
+        4)
+            echo
+            SetNumbers
+            SetMod $number1 $number2
+            echo -e "\nRemainder = $remainder\n"
+            read -p "Press Enter to Continue..." null
+            clear
+            ;;
+        5)
+            echo
+            SetNumbers
+            SetDiv $number1 $number2
+            echo -e "\nQuotient = $quotient\n"
+            read -p "Press Enter to Continue..." null
+            clear
+            ;;
 
-            6)
-                Exit
-                ;;
+        6)
+            Exit
+            ;;
 
-            *)
-                echo -e "\nInvalid Option"
-                read -p "Press Enter to Continue..." null
-                clear
+        *)
+            echo -e "\nInvalid Option"
+            read -p "Press Enter to Continue..." null
+            clear
     esac
 }
 
