@@ -7,17 +7,11 @@
 # Revised:
 #     <revision date>
 
-# case statement
-
-#daysOfWeek=(Sunday Monday Tuesday Wednesday Thursday Friday Saturday)
-
-# Begin Program
 clear
 echo -n "Login "
 read name
 
-# Collecting SYSTEM DATE
-date '+%A, %B, %d'
+date '+%A, %B %d'
 
 case "$(date '+%w')" in
     1)
