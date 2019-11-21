@@ -1,0 +1,23 @@
+$ ./signal-processing.sh
+
+Please enter Grandma's age: ^Z
+Wrong guess
+Please try again
+Please enter Grandma's age:
+^C
+Wrong guess
+Please try again
+Please enter Grandma's age:
+9
+Wrong guess
+Please try again
+Please enter Grandma's age:
+a
+Wrong guess
+Please try again
+Please enter Grandma's age:
+88
+Congratulations!
+user gets Candy
+$
+
