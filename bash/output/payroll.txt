@@ -1,0 +1,12 @@
+$ ./payroll.sh
+Enter the number of employees: 2
+Enter employee 0's name: Sue
+Enter Sue's pay rate: 10
+Hours worked for Sue: 35
+Enter employee 1's name: Bob
+Enter Bob's pay rate: 12
+Hours worked for Bob: 48
+Sue's total pay = $350
+Bob's total pay = $624.0
+$
+
