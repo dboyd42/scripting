@@ -1,3 +1,9 @@
+./payroll.sh
+Enter the number of employees: 0
+
+Invalid numbers of employees
+Exiting program...
+
 $./payroll.sh
 Enter the number of employees: 2
 
