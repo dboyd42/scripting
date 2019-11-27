@@ -8,45 +8,103 @@
 #     <revision date>
 
 ###
-### Variables
+### Declare Variables
 ###
-Name=()
-nEmployees=0
-PayRate=()
-Hours=()
-Gross=()
-FTHours=40
-OTPayRate=1.5
+Name=()         # employee names
+nEmployees=0    # number of employees
+Wages=()        # employee's wage
+HoursWorked=()  # employee's number of hours worked
+Gross=()        # employee's total pay
+FTHours=40      # num of hours/wk for a full time
+OTWages=1.5     # rate of overtime wages
 
-# expr is for whole numbers
-# echo is for floating point numbers
-
-read -p "Enter the number of employees: " nEmployees
-for ((i=0; i<nEmployees; i++))
-do
-    read -p "Enter employee $i's name: " emp
-    Name[$i]=$emp
-    read -p "Enter $emp's pay rate: " pay
-    PayRate[$i]=$pay
-    read -p "Hours worked for $emp: " hrs
-    Hours[$i]=$hrs
-
-    ### calculate pay
-    if [ ${Hours[$i]} -gt $FTHours ]
+###
+### Check Valid Num Employees
+###
+Check_nEmp() {
+    if [ $nEmployees -lt 1 ]
     then
-        tempOThrs=$(( $FTHours * ${PayRate[$i]} ))
-        overtimehours=$(( ${Hours[$i]} - $FTHours ))
-        overtimePay=$( bc <<< "scale=2; $overtimehours * $OTPayRate * ${PayRate[$i]}" )
-        regularPay=$(( ${PayRate[$i]} * $FTHours ))
-        Gross[$i]=$( bc <<< "scale=2; $regularPay + $overtimePay" )
-    else
-        Gross[$i]=$(bc <<< "scale=2; ${Hours[$i]} * ${PayRate[$i]}" )
+        echo -e "\nInvalid numbers of employees"
+        echo "Exiting program..."
+        exit 0
     fi
-done
+}
 
-### display totals
-for ((i=0; i<nEmployees; i++))
-do
-    echo "${Name[$i]}'s total pay = \$${Gross[$i]}"
-done
+###
+### Get Employee Information
+###
+SetEmployee() {
+    # Get num of employees
+    read -p "Enter the number of employees: " nEmployees
+    Check_nEmp
+    echo
+
+    # Get Emp name and pay rate
+    for ((i=0; i<nEmployees; i++))
+    do
+        read -p "Employee name: " Name[$i]
+        read -p "Pay rate: " Wages[$i]
+        echo
+    done
+}
+
+###
+### Get Hours Worked
+###
+SetHoursWorked() {
+    for ((i=0; i<nEmployees; i++))
+    do
+        read -p "Hours worked for ${Name[$i]}: " HoursWorked[$i]
+    done
+}
+
+
+###
+### Calculate Pay
+###
+CalculatePay() {
+    for ((i=0; i<nEmployees; i++))
+    do
+        if [ ${HoursWorked[$i]} -gt $FTHours ]
+        then
+            nOTHours=$(( ${HoursWorked[$i]} - $FTHours ))
+            OT_Amt=$( bc <<< "scale=2; $nOTHours * $OTWages * ${Wages[$i]}" )
+            RegularPay=$( bc <<< "scale=2; ${Wages[$i]} * $FTHours" )
+            Gross[$i]=$( bc <<< "scale=2; $RegularPay + $OT_Amt" )
+        else
+            Gross[$i]=$(bc <<< "scale=2; ${HoursWorked[$i]} * ${Wages[$i]}" )
+        fi
+    done
+}
+
+###
+### Display Gross of Employees
+###
+DisplayGross() {
+    echo "Payroll Report"
+    echo "====================="
+    echo "Name        | Pay"
+    echo "---------------------"
+    for ((i=0; i<nEmployees; i++))
+    do
+        printf "%-12s| $%.2f\n" ${Name[$i]} ${Gross[$i]}
+    done
+}
+
+###
+### Main
+###
+main() {
+    SetEmployee
+    SetHoursWorked
+    CalculatePay
+    echo
+    DisplayGross
+}
+
+###
+### Run Program
+###
+main
+exit 0
 
