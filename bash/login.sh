@@ -15,22 +15,22 @@ date '+%A, %B %d'
 
 case "$(date '+%w')" in
     1)
-        echo "Work only M-F.  Enjoy your weekend"
-        ;;
-    2)
         echo "Welcome to Monday funday"
         ;;
-    3)
+    2)
         echo "Family Day"
         ;;
-    4)
+    3)
         echo "Mandatory Meeting for all Insurance Vendors at 2:00pm"
         ;;
-    5)
+    4)
         echo "Backups are to be done between 3pm and 5pm"
         ;;
-    6)
+    5)
         echo "It's Friday.  You don't have to go home, but you can't stay here"
+        ;;
+    6)
+        echo "Work only M-F.  Enjoy your weekend"
         ;;
     7)
         echo "Work only M-F.  Enjoy your weekend"
