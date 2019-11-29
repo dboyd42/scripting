@@ -43,7 +43,7 @@ SetEmployee() {
     for ((i=0; i<nEmployees; i++))
     do
         read -p "Employee name: " Name[$i]
-        read -p "Pay rate: " Wages[$i]
+        read -p "${Name[$i]}'s pay rate: $" Wages[$i]
         echo
     done
 }
@@ -82,9 +82,9 @@ CalculatePay() {
 ###
 DisplayGross() {
     echo "Payroll Report"
-    echo "====================="
+    echo "======================="
     echo "Name        | Pay"
-    echo "---------------------"
+    echo "-----------------------"
     for ((i=0; i<nEmployees; i++))
     do
         printf "%-12s| $%.2f\n" ${Name[$i]} ${Gross[$i]}
