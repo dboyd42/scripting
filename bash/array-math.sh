@@ -26,7 +26,6 @@ outputArrZ=()     # square-root values
 ### Check File Status
 ###
 checkFile() {
-    echo
     if [ -f $1 ]; then
         boolFileExists=1
     else
@@ -58,19 +57,22 @@ getOutFile() {
 }
 
 ###
-### Set Greatest (Array) Size
+### Set Least (Array) Size
 ###
-setGreatestSize() {
-    echo
-    size=(${#inputArrX[*]} -ge ${#inputArrY[*]} \
-          ? ${#inputArrX[*]} : ${#inputArrY[*]})
+setLeastSize() {
+    if [ ${#inputArrX[*]} -lt ${#inputArrY[*]} ]
+    then
+        size=${#inputArrX[*]}
+    else
+        size=${#inputArrY[*]}
+    fi
 }
 
 ###
 ### Multiply arrays
 ###
 multiplyArrays() {
-    setGreatestSize  # find max array size
+    setLeastSize  # find max array size
     for (( i=0; i<$size; ++i ))
     do
         multiArr[$i]=$(( ${inputArrX[$i]} * ${inputArrY[$i]} ))
