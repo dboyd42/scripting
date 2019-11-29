@@ -134,7 +134,7 @@ SetMod() {
 ###
 ###
 SetNumbers() {
-    read -p "Enter first number : " number1
+    read -p "Enter first  number: " number1
     read -p "Enter second number: " number2
 }
 ###
