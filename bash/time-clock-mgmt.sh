@@ -117,7 +117,7 @@ calcMins() {
         then
             let sumHours[$i/2]--
         else
-            let sumMins[$i/2]=sumMins[$i/2]%mphr
+            let sumMins[$i/2]=$sumMins[$i/2]%$mphr
         fi
     }
 }
@@ -132,7 +132,7 @@ sumTimes() {
     }
 
     # validate mins
-    if [[ $workedMins -gt $mphr ]]
+    if [[ $workedMins -ge $mphr ]]
     then
         let workedHours++
         let workedMins-=mphr
