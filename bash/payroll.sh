@@ -87,7 +87,7 @@ DisplayGross() {
     echo "-----------------------"
     for ((i=0; i<nEmployees; i++))
     do
-        printf "%-12s| $%.2f\n" ${Name[$i]} ${Gross[$i]}
+        printf "%-12s| $%.2f\n" "${Name[$i]}" ${Gross[$i]}
     done
 }
 
