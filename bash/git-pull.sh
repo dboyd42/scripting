@@ -8,12 +8,18 @@
 # Revised:
 #     <revision date>
 
-#read -p "Enter path/to/dir that holds your repos [enter '.' for current]: " repo
-#cd $repo
-cd ../../
-echo -e "\nCurrent directory: $PWD\n"
+# Declare vars
+repo="../../"  # Path from scripting repo
 
-# update each repo
+# Uncomment line below for user input
+#read -p "Enter path/to/dir that holds your repos (enter '.' for current): " repo
+
+# cd to directory
+cd $repo
+echo -e "\nCurrent directory: $PWD"
+echo -e "===================================================================\n"
+
+# Update each repo
 for dir in ./*/
 do
     cd $dir
@@ -24,5 +30,6 @@ do
     cd ../
 done
 
-echo -e "\nCompleted pulling.\n"
+echo "==================================================================="
+echo -e "Pulling complete!\n"
 
