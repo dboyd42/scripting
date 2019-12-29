@@ -1,8 +1,7 @@
 #!/bin/bash
 # Copyright 2019 David Boyd, all rights reserved
 # Program: Signal Processing
-# Description:
-#
+# Description: Traps signals from the keyboard
 # Date: Thu Nov 21 2019
 # Revised:
 #   <revision date>
