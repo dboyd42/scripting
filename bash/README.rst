@@ -16,6 +16,8 @@ Contents
 +------------------------+-------------------------------------------------------------+
 | conditionals           | Examplifies conditional statements                          |
 +------------------------+-------------------------------------------------------------+
+| git-pull               | Updates all repos under a parent directory                  |
++------------------------+-------------------------------------------------------------+
 | login                  | Examplifies a login script                                  |
 +------------------------+-------------------------------------------------------------+
 | looping                | Examplifies loops: for / while                              |
@@ -31,6 +33,8 @@ Contents
 +------------------------+-------------------------------------------------------------+
 | search                 | Searches <pattern> in files including pdfs                  |
 +------------------------+-------------------------------------------------------------+
+| signal processing      | Traps signals from the keyboard                             |
++------------------------+-------------------------------------------------------------+
 | sqr-numbers            | Reads in a file of numbers, squares their values,           |
 |                        | then writes output to another file.                         |
 +------------------------+-------------------------------------------------------------+
@@ -40,7 +44,7 @@ Contents
 +------------+------------------------------------------+
 | Directory  | Description                              |
 +============+==========================================+
-| data-files | Files used as input for various programs |
+| datafiles | Files used as input for various programs |
 +------------+------------------------------------------+
 | output     | Shows sample outputs from programs       |
 +------------+------------------------------------------+
