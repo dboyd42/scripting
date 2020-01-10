@@ -14,6 +14,10 @@ import pyperclip    # cp & paste from sys clipboard
 #print("Make sure the SHA1 checksum is copied into the your system's clipboard")
 #input("Press 'Enter' to continue...")
 
+if (len(sys.argv) != 2):
+    print("Try './cmp-sha1.py filename'")
+    exit()
+
 # Declare local variables
 local_file = sys.argv[1]
 web_sha1 = pyperclip.paste()
