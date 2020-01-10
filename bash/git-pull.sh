@@ -6,7 +6,10 @@
 #     under a parent directory.
 # Date: Dec 29 2019
 # Revised:
-#     <revision date>
+#    2020-01-10
+# Note: If making script global:
+#           $(cp script /usr/local/bin/)
+#           repo="/home/$USER/path/to/repo"
 
 # Declare vars
 repo="../../"  # Path from scripting repo
