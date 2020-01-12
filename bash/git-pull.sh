@@ -6,23 +6,23 @@
 #     under a parent directory.
 # Date: Dec 29 2019
 # Revised:
+#    2020-01-12
 #    2020-01-10
-# Note: If making script global:
-#           $(cp script /usr/local/bin/)
-#           repo="/home/$USER/path/to/repo"
 
-# Declare vars
-repo="../../"  # Path from scripting repo
-
-# Uncomment line below for user input
+# Uncomment line below for user input | Requires abs(path/to/dir/)
 #read -p "Enter path/to/dir that holds your repos (enter '.' for current): " repo
+
+# Initialize path/to/repo/dirs/
+#repo="../../"  # default location
+#repo="/home/$USER/code/repos/github/dboyd42/"  # Ubuntu
+repo="/$USER/code/repos/github/dboyd42/"  # Kali
 
 # cd to directory
 cd $repo
 echo -e "\nCurrent directory: $PWD"
 echo -e "===================================================================\n"
 
-# Update each repo
+# Update each repo and check status
 for dir in ./*/
 do
     cd $dir
@@ -34,5 +34,5 @@ do
 done
 
 echo "==================================================================="
-echo -e "Pulling complete!\n"
+echo -e "Pulling completed!\n"
 
