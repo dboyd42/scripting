@@ -91,3 +91,16 @@ scale
 -----
 **scale** determines how many decimal places.
 
+Global Scripts
+==============
+
+.. code-block :: Bash
+
+	# Find machine's $PATH, Find current dir
+	echo $PATH
+	pwd | xclip -selection clipboard
+
+	# Create softlink from repo to $PATH
+	sudo ln -sf `xclip -o` /usr/local/bin/
+	chmod +x /usr/local/bin/git-pull.sh
+
