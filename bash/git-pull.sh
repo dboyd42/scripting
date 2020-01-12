@@ -14,8 +14,8 @@
 
 # Initialize path/to/repo/dirs/
 #repo="../../"  # default location
-#repo="/home/$USER/code/repos/github/dboyd42/"  # Ubuntu
-repo="/$USER/code/repos/github/dboyd42/"  # Kali
+#repo="/home/$USER/Documents/code/repos/github/dboyd42/"  # Linux
+repo="/$USER/Documents/code/repos/github/dboyd42/"  # Kali
 
 # cd to directory
 cd $repo
