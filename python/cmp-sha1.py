@@ -9,7 +9,10 @@
 import sys          # used for CLI args
 import subprocess   # used for terminal commands
 import pyperclip    # cp & paste from sys clipboard
-from termcolor import colored
+try:
+    from termcolor import colored
+except:
+    print("termcolor")
 
 # Display warning
 #print("Make sure the SHA1 checksum is copied into the your system's clipboard")
@@ -17,7 +20,7 @@ from termcolor import colored
 
 if (len(sys.argv) != 2):
     print("Try './cmp-sha1.py filename'")
-    exit()
+    exit(0)
 
 # Declare local variables
 local_file = sys.argv[1]
@@ -33,16 +36,18 @@ output = output.decode('utf-8')      # type = str
 # Extract SHA1sum
 sha1 = output.split()[0]
 
-# Display Results
-print(web_sha1, "\t<--From System Clipboard")
-print(sha1, "\t<--From file's SHA1")
-
-print('='*79)
 # Compare SHA1sums
 if (web_sha1 == sha1):
     status = "Passed"
-    print('SHA1 checksums:', colored(status, 'green'))
+    color = "green"
 else:
     status = "Failed"
-    print('SHA1 checksums:', colored(status, 'red'))
+    color = "red"
+
+# Display Results
+print(web_sha1, "\t<--From System Clipboard")
+print(sha1, "\t<--From file's SHA1")
+print('='*79)
+print('SHA1 checksums:', colored(status, color))
+
 
