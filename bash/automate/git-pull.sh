@@ -13,10 +13,11 @@
 #read -p "Enter path/to/dir that holds your repos (enter '.' for current): " repo
 
 # Initialize path/to/repo/dirs/
-#repo="../../"  # default location
+repo="../../../"  # default location
 #repo="/home/$USER/Documents/code/repos/github/dboyd42/"  # Linux
 #repo="/$USER/Documents/code/repos/github/dboyd42/"  # Kali
-repo="/Users/$USER/Desktop/dboyd42/"  # Mac
+#repo="$User"  # /User/<user>/*  ## MAC
+#repo="$User/Documents/code/repos/github/dboyd42/"  # ERROR  ## MAC
 
 # cd to directory
 cd $repo
