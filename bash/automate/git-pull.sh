@@ -6,19 +6,21 @@
 #     under a parent directory.
 # Date: Dec 29 2019
 # Revised:
+#    2020-01-16
 #    2020-01-15
 #    2020-01-12
 #    2020-01-10
 
+# Determine OS and initialize path/to/repo/dirs/
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     repo="/home/$USER/Documents/code/repos/github/dboyd42/";;
+    Darwin*)    repo="$User/Documents/code/repos/github/dboyd42/";;  #ERR:macOS
+    *)          repo="../../../"  # default location
+esac
+
 # Uncomment line below for user input | Requires abs(path/to/dir/)
 #read -p "Enter path/to/dir that holds your repos (enter '.' for current): " repo
-
-# Initialize path/to/repo/dirs/
-repo="../../../"  # default location
-#repo="/home/$USER/Documents/code/repos/github/dboyd42/"  # Linux
-#repo="/$USER/Documents/code/repos/github/dboyd42/"  # Kali
-#repo="$User"  # /User/<user>/*  ## MAC
-#repo="$User/Documents/code/repos/github/dboyd42/"  # ERROR  ## MAC
 
 # cd to directory
 cd $repo
