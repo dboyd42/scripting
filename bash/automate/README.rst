@@ -11,8 +11,13 @@ Contents
 +=============+=================================================+
 | git-pull    | Updates all repos under a parent directory      |
 +-------------+-------------------------------------------------+
-| env-scripts | Assigns a script to an environmental variable   |
-+-------------+-------------------------------------------------+
 | search      | Searches grep <pattern> in files including pdfs |
 +-------------+-------------------------------------------------+
+
+Linking to Env Var
+==================
+
+.. code-block :: Bash
+
+	sudo ln -sf $PWD/script.sh /usr/bin/local/script.sh
 
