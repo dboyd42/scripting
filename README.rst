@@ -1,7 +1,7 @@
 Scripting
 #########
 :Author: David Boyd
-:Date: Wed Oct 30
+:Date: 2019-10-30
 
-This repository holds my scripts written for bash and perl.
+This repository holds my scripts written for Bash, Perl, and Python.
 
