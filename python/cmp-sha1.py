@@ -5,19 +5,19 @@
 #     Compares SHA1sums from system clipboard to file's SHA1sum.
 # Date: 2020-01-10
 # Revised:
+# Depencies:
+#       macOS: brew install md5sha1sum
 
 import sys          # used for CLI args
 import subprocess   # used for terminal commands
 import pyperclip    # cp & paste from sys clipboard
-try:
-    from termcolor import colored
-except:
-    print("termcolor")
+from termcolor import colored
 
 # Display warning
 #print("Make sure the SHA1 checksum is copied into the your system's clipboard")
 #input("Press 'Enter' to continue...")
 
+# Check if two argv have been passed
 if (len(sys.argv) != 2):
     print("Try './cmp-sha1.py filename'")
     exit(0)
