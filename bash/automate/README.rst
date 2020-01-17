@@ -14,11 +14,14 @@ Contents
 | search   | Searches grep <pattern> in files including pdfs |
 +----------+-------------------------------------------------+
 
-Linking to Env Var
-==================
+Linking to Global Script
+========================
 
 .. code-block :: Bash
 
 	# Linux
 	sudo ln -sf $PWD/script.sh /usr/bin/local/script.sh
+
+	# macOS
+	sudo ln -sf $PWD/script.sh /usr/local/bin/script.sh
 
