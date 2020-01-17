@@ -14,20 +14,20 @@
 # Determine OS and initialize path/to/repo/dirs/
 unameOut="$(uname -s)"
 case "${unameOut}" in
-    Linux*)     repo="/home/$USER/Documents/code/repos/github/dboyd42/";;
-    Darwin*)    repo="$User/Documents/code/repos/github/dboyd42/";;  #ERR:macOS
-    *)          repo="../../../"  # default location
+    Linux*)     repoDir="/home/$USER/Documents/code/repos/github/dboyd42/";;
+    Darwin*)    repoDir="/Users/$USER/Documents/code/repos/github/dboyd42/";;
+    *)          repoDir="../../../"  # default location
 esac
 
 # Uncomment line below for user input | Requires abs(path/to/dir/)
 #read -p "Enter path/to/dir that holds your repos (enter '.' for current): " repo
 
 # cd to directory
-cd $repo
+cd $repoDir
 echo -e "\nCurrent directory: $PWD"
 echo -e "===================================================================\n"
 
-# Update each repo and check status
+# Pull and check status of each repo
 for dir in ./*/
 do
     cd $dir
@@ -38,6 +38,7 @@ do
     cd ../
 done
 
+# Display end of program
 echo "==================================================================="
 echo -e "Pulling completed!\n"
 
