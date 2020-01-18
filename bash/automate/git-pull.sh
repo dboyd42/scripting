@@ -11,13 +11,19 @@
 #    2020-01-12
 #    2020-01-10
 
-# Determine OS and initialize path/to/repo/dirs/
-unameOut="$(uname -s)"
-case "${unameOut}" in
-    Linux*)     repoDir="/home/$USER/Documents/code/repos/github/dboyd42/";;
-    Darwin*)    repoDir="/Users/$USER/Documents/code/repos/github/dboyd42/";;
-    *)          repoDir="../../../"  # default location
-esac
+# Determin version
+osType=$(cat /etc/*-release | grep -m 1 "kali" | cut -d '=' -f 2)
+if [ $osType = "kali" ]; then
+    repoDir="/$USER/Documents/code/repos/github/dboyd42/"
+else
+    # Determine OS and initialize path/to/repo/dirs/
+    unameOut="$(uname -s)"
+    case "${unameOut}" in
+        Linux*)  repoDir="/home/$USER/Documents/code/repos/github/dboyd42/";;
+        Darwin*) repoDir="/Users/$USER/Documents/code/repos/github/dboyd42/";;
+        *)       repoDir="../../../"  # default location
+    esac
+fi
 
 # Uncomment line below for user input | Requires abs(path/to/dir/)
 #read -p "Enter path/to/dir that holds your repos (enter '.' for current): " repo
