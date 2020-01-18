@@ -19,9 +19,6 @@ Linking to Global Script
 
 .. code-block :: Bash
 
-	# Linux
-	sudo ln -sf $PWD/script.sh /usr/bin/local/script.sh
-
-	# macOS
+	# Linux and macOS
 	sudo ln -sf $PWD/script.sh /usr/local/bin/script.sh
 

@@ -18,8 +18,11 @@ Contents
 | output       | Shows sample outputs from programs       |
 +--------------+------------------------------------------+
 
-Environmental Scripts
-=====================
+Linking to Global Script
+========================
 
-Use **automate/env-scripts.sh** to make a script globally accesssible.
+.. code-block :: Bash
+
+	# Linux and macOS
+	sudo ln -sf $PWD/script.sh /usr/local/bin/script.sh
 
