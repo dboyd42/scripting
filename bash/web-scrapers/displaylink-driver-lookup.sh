@@ -5,6 +5,7 @@
 #     Checks for DisplayLink's driver update for Ubuntu 20.4
 # Date: 2020-04-28
 # Revised:
+#       2020-05-06
 
 URL="https://www.displaylink.com/downloads/ubuntu"
 version="Ubuntu 20.04"
