@@ -13,6 +13,7 @@ found=$(curl -s $URL | grep -oh -m1 "$version" ) # -'s'ilent curl's headers
 if [[ "$found" == "$version" ]]; then
     echo "DisplayLink driver for $version is now available for download:"
     echo -e "\t$URL"
+    firefox $URL &
 else
     echo "DisplayLink driver for $version is NOT available."
 fi
