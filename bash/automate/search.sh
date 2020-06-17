@@ -15,11 +15,20 @@
 #   This script allows regex search using the backslash '\' prefix
 # Date: Mon 04 Nov 2019
 # Revised:
-#     <revision date>
+#    2020-06-17 - [+] pdfgrep error message
 
 # Get vars
 str=""
 lines=3     # prints nlines before & after grep'd pattern
+
+# Check if pdfgrep is installed
+pdfgrep --v >/dev/null 2>&1 || {
+    echo
+    echo >&2 "pdfgrep is not installed, but is required to search inside PDFs"
+    echo
+    read -p "Press enter to continue..."
+    clear
+    }
 
 # Determine if args have been passed
 if [ -z $1 ]; then
