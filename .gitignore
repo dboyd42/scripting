@@ -7,7 +7,7 @@
 *.o
 *.obj
 *.d
-*.exe
+#*.exe --allow prgms to be uploaded
 
 #Java
 *.class
