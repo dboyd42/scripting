@@ -43,7 +43,7 @@ def convert_encoding(input_str:str, input_format:str)->dict:
     except UnicodeDecodeError as e:
         # Remove all non-ASCII chars from the input string
         ascii_str = re.sub(b'\[\x00-\x7F\]', '', input_bytes)
-        
+
     bin_str = ''.join(format(b, '08b') for b in input_bytes)
     dec_str = ' '.join(str(b) for b in input_bytes)
     hex_str = input_bytes.hex()
@@ -64,7 +64,7 @@ def parse_args()->object:
         description='Convert a string between different encodings.')
     parser.add_argument('input_str', type=str, default='ASCII',\
         help='The input string to be converted.')
-    
+
     # Setup a mutally exclusive group of flags
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-a', '--ascii', action='store_const', const='ASCII', \
@@ -77,7 +77,7 @@ def parse_args()->object:
         dest='input_format', help='Set the input format to Hex.')
     group.add_argument('-u', '--utf-8', action='store_const', const='UTF-8', \
         dest='input_format', help='Set the input format to UTF-8.')
-    
+
     return parser.parse_args()
 
 ###
